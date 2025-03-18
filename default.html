@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traditional Paddy, Grains & Pulses</title>
+  <!-- Google Material Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #E3E6C3, #dce0b3);
+      color: #4A2A0B;
+    }
+
+
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to right, #E3E6C3, #dce0b3);
+      color: #613711;
+      padding: 1rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      font-family: 'Arial', sans-serif;
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 3px 3px 0px #ffffff,
+        /* Dark shadow for depth */
+        6px 6px 0px #eae6e5,
+        /* Secondary shadow */
+        9px 9px 15px rgba(0, 0, 0, 0.3);
+      /* Soft outer glow */
+    }
+
+
+
+
+    header img {
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.5);
+      /* Transparent white background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #ccc;
+
+    }
+
+    header div {
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+
+
+    /* Navigation Bar */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(to right, #E3E6C3, #dce0b3);
+      padding: 0.8rem;
+      margin-top: 80px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      /* box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);*/
+      color: #613711;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #613711;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    nav a.active,
+    nav a:hover {
+      background-color: #dce0b3;
+      border-radius: 15px;
+    }
+
+    nav .search-bar {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      background-color: #E7691A;
+      padding: 0.4rem;
+      border-radius: 5px;
+      margin-left: 1rem;
+      border: 1px solid #ddd;
+      max-width: 450px;
+      max-height: 30px;
+      visibility: hidden;
+    }
+
+    nav .search-bar input {
+      border: none;
+      outline: none;
+      flex-grow: 1;
+      padding: 0.4rem;
+    }
+
+    nav .search-bar button {
+      background: linear-gradient(to right, #43a047, #8bc34a);
+      border: none;
+      color: #E7691A;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    nav .search-bar button:hover {
+      background: #558b2f;
+    }
+
+    /* Body and Content */
+    .content {
+      margin: 2rem;
+      margin-top: 120px;
+    }
+
+    /* Product List */
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .product {
+      background-color: #dce0b3;
+      border: 1px solid #ffffff;
+      border-radius: 15px;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 1rem;
+      border-radius: 25px;
+      transition: transform 0.3s ease;
+    }
+
+    .product h3 {
+      margin: 0.5rem 0;
+    }
+
+    .product:hover img {
+      transform: scale(1.5);
+      /* Zooms in by 1.5x */
+    }
+
+    /* Contact Floating Box */
+    .contact-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(to right, #a07343, #c3804a);
+      color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .contact-box h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .contact-box p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+    }
+
+    .contact-box a {
+      text-decoration: none;
+      color: #ffc107;
+      font-weight: bold;
+    }
+
+    .contact-box a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(to top, #4e342e, #a18458);
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+      position: flex;
+      bottom: -100px;
+      /* Hidden initially */
+      width: 100%;
+      transition: bottom 0.5s ease;
+      /* Smooth slide-in effect */
+    }
+
+    footer a {
+      color: #ffcc80;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    footer.show {
+      bottom: 0;
+      /* Visible when at the bottom of the page */
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+    }
+
+    /* Section Styles */
+    section {
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #E7691A;
+    }
+
+    li {
+      margin: 0.5rem 0;
+      word-spacing: 0.5rem;
+      padding: 0.5rem;
+    }
+
+    .philosophy {
+      background-color: #dce0b3;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <a href="#">
+      <img src="./Images/logo.png" alt="Vezham - Traditional Paddy, Grains & Pulses." />
+    </a>
+    <div>
+      <h1>Vezham Marketing and Trading</h1>
+      <p>Empowering Farmers, Enriching Lives</p>
+
+    </div>
+    <button class="theme-toggle-btn" id="themeToggleBtn">
+      <span class="material-icons" id="themeIcon">dark_mode</span>
+    </button>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="active">Products</a>
+    <a href="#philosophy">Philosophy</a>
+    <a href="#mission">Our Mission</a>
+    <a href="#about-us">About Us</a>
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search for products..." />
+      <button><i class="material-icons">search</i></button>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Hero Section -->
+
+    <!-- Products Section -->
+    <section id="products">
+      <h2>Our Products</h2>
+      <div class="product-list">
+        <div class="product">
+          <img src="./images/products/top-view-raw-rice-inside-bag-plate-grey-surface.jpg" alt="Basmati Rice" />
+          <h3>Basmati Rice</h3>
+          <p>Premium long-grain rice</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/top-view-little-raw-pasta-light-background.jpg" alt="Toor Dal" />
+          <h3>Toor Dal</h3>
+          <p>Protein-rich pigeon peas</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/whole-grain-wheat.jpg" alt="Wheat" />
+          <h3>Wheat</h3>
+          <p>Whole-grain wheat</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/Barley.png" alt="Barley" />
+          <h3>Barley</h3>
+          <p>High-quality barley</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/brown-rice-1_600x.jpg" alt="Traditional Paddy" />
+          <h3>Traditional Paddy</h3>
+          <p>Traditional paddy from local farmers</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/multi-grains.jpg" alt="Grains" />
+          <h3>Grains</h3>
+          <p>Assorted grains from local farmers</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/top-view-raw-rice-inside-bag-plate-grey-surface.jpg" alt="Basmati Rice" />
+          <h3>Basmati Rice</h3>
+          <p>Premium long-grain rice</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/top-view-little-raw-pasta-light-background.jpg" alt="Toor Dal" />
+          <h3>Toor Dal</h3>
+          <p>Protein-rich pigeon peas</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/whole-grain-wheat.jpg" alt="Wheat" />
+          <h3>Wheat</h3>
+          <p>Whole-grain wheat</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/Barley.png" alt="Barley" />
+          <h3>Barley</h3>
+          <p>High-quality barley</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/brown-rice-1_600x.jpg" alt="Traditional Paddy" />
+          <h3 class="mdc-typography--headline6">Traditional Paddy</h3>
+          <p>Traditional paddy from local farmers</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+        <div class="product">
+          <img src="./images/products/multi-grains.jpg" alt="Grains" />
+          <h3>Grains</h3>
+          <p>Assorted grains from local farmers</p>
+          <p><b>Quantity:</b> 1kg</p>
+          <p><b>Quality:</b> A+</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy">
+      <h2>Our Philosophy</h2>
+
+      <p class="philosophy">
+      <div>
+        At Vezham Marketing and Trading, we believe that prosperity begins with the land and the hardworking hands that
+        cultivate it. Our philosophy is rooted in sustainability, empowerment, and authenticity.
+      </div>
+      <div>
+        <ul>
+          <li>
+            <b>Sustainability:</b> We are committed to fostering eco-friendly practices that protect our planet
+            while ensuring the highest quality products for our customers. Every grain of rice, every kernel of wheat,
+            and
+            every pulse
+            reflects the care and responsibility we uphold toward nature.
+          </li>
+          <li>
+            <b>Empowerment:</b> Farmers are the backbone of our world, and we strive to empower them by creating fair,
+            transparent,
+            and impactful trade practices. By bridging the gap between rural farmers and modern markets, we aim to
+            uplift
+            farming communities
+            and bring prosperity to every home.
+          </li>
+          <li>
+            <b>Authenticity:</b> Tradition lies at the heart of everything we do. From sourcing to delivery, our
+            products
+            symbolize heritage, health, and the unmatched flavors of purity.
+          </li>
+        </ul>
+        <div>
+          At Vezham, we're not just marketing and trading; we’re planting seeds of change, nurturing growth, and
+          cultivating
+          relationships that transcend boundaries.
+        </div>
+        <div>
+          This captures the spirit of a forward-looking, nature-centric, and customer-oriented brand.
+        </div>
+
+      </div>
+
+      </p>
+
+
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission">
+      <h2>Our Mission</h2>
+      <p>
+      <div>
+        At Vezham Marketing and Trading, our mission is to create a world where tradition meets innovation, empowering
+        farmers while providing high-quality, sustainable products to every household.
+      </div>
+
+      <ul>
+        <li><b>Empowering Farmers:</b> We aim to uplift the farming community by creating fair trade opportunities,
+          ensuring
+          farmers receive the recognition and rewards they truly deserve. Through partnerships and transparent
+          practices,
+          we cultivate prosperity at the grassroots level.
+        </li>
+        <li><b>Sustainability First:</b> Our goal is to promote eco-friendly agricultural methods that honor the planet
+          while
+          ensuring nutritious and high-quality produce for our consumers. Every grain we trade is a step toward a
+          greener
+          and healthier future.
+        </li>
+        <li>
+          <b>Connecting Tradition to Modern Living:</b> By bridging the gap between traditional farming and modern
+          markets, we
+          strive to bring the essence of heritage directly to your table, delivering products that are as authentic as
+          they are exceptional.
+        </li>
+      </ul>
+      <p>
+        We are driven by a singular purpose: to support those who nurture the land while delivering excellence to those
+        who rely on it. Together, we&#39;re shaping a future built on trust, tradition, and sustainability.
+      </p>
+      </p>
+      <p>
+        Our mission is to deliver high-quality products sourced directly from
+        farmers while fostering sustainability and prosperity.
+      </p>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about-us">
+      <h2>About Us</h2>
+
+      <div>
+        <p>
+          At <b>Vezham Marketing and Trading</b>, we are dedicated to redefining the way traditional agricultural
+          products
+          reach
+          households. With deep respect for farming heritage and an unwavering commitment to sustainability, we bring
+          nature&#39;s best—from paddy fields to pulses—straight to your table.
+        </p>
+      </div>
+      <div>
+        <b>Who We Are</b>
+        <p>
+          We are a bridge between the hardworking hands of farmers and the modern marketplace. Our mission is to empower
+          rural communities, create fair trade opportunities, and deliver high-quality, natural products that honor
+          tradition and authenticity.</p>
+      </div>
+
+      <div>
+        <b>What We Believe</b>
+        <ul>
+          <li><b>Farmers First:</b>We champion fair trade practices to ensure farmers receive their well-deserved
+            rewards and support their growth.</li>
+          <li><b>Sustainability:</b>We focus on eco-friendly methods, protecting our planet while providing products of
+            unmatched quality.</li>
+          <li><b>Authenticity Matters:</b>Every product we offer is a testament to heritage, health, and purity.</li>
+        </ul>
+      </div>
+      <div>
+        Through our efforts, we strive to connect the richness of traditional farming with the convenience and reach of
+        modern commerce. At Vezham, we don’t just sell products—we build trust, foster growth, and cultivate lasting
+        relationships.
+      </div>
+
+    </section>
+  </div>
+
+  <!-- Floating Contact Box -->
+  <div class="contact-box">
+    <h3>Contact Us</h3>
+    <p>Email: <a href=mailto:inquiry@vezham.com>inquiry@vezham.com</a></p>
+    <p>Phone: +1-800-VEZ-HAM</p>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div>
+      <a href="https://facebook.com" target="_blank">Facebook</a>
+      <a href="https://twitter.com" target="_blank">Twitter</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+    </div>
+    <div>
+      <p>
+        We provide high-quality traditional paddy, grains, and pulses with
+        utmost care.
+      </p>
+      <p>
+        Disclaimer: All product information is subject to change without
+        notice.
+      </p>
+    </div>
+    <p>&copy; 2025 Traditional Paddy, Grains & Pulses</p>
+  </footer>
+  <script>
+    // JavaScript to detect when the page is at the bottom
+    const footer = document.getElementById('footer')
+
+    window.addEventListener('scroll', () => {
+      // Check if the user has scrolled near the bottom of the page
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        footer.classList.add('show') // Show the footer
+      } else {
+        footer.classList.remove('show') // Hide the footer
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>
